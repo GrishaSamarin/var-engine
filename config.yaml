@@ -1,0 +1,36 @@
+# Portfolio and model configuration
+# Everything that a reviewer would want to change lives here, not in the code.
+
+portfolio:
+  # Ticker -> portfolio weight. Must sum to 1.0.
+  weights:
+    AAPL: 0.20
+    MSFT: 0.20
+    JPM: 0.15
+    XOM: 0.15
+    JNJ: 0.15
+    TLT: 0.15
+  value: 1000000        # portfolio market value in USD
+
+data:
+  start: "2015-01-01"
+  end: "2025-12-31"
+  cache_dir: "output/cache"
+
+model:
+  confidence_levels: [0.95, 0.99]
+  horizon_days: 1
+  lookback_days: 250      # rolling estimation window
+  return_type: "log"      # "log" or "simple"
+
+monte_carlo:
+  n_simulations: 50000
+  seed: 42
+  distribution: "normal"  # "normal" or "t"
+  t_dof: 5                # only used if distribution == "t"
+
+backtest:
+  test_window_days: 500   # out-of-sample days to evaluate exceptions over
+  kupiec_alpha: 0.05      # significance level for POF test
+
+threshold_pct: 0.95
