@@ -16,14 +16,35 @@ def plot_return_distribution(returns, var_levels: dict, save_path=None):
     raise NotImplementedError
 
 
-def plot_exception_timeline(var_forecasts, realised_returns, save_path=None):
+def plot_exception_timeline(var_forecasts, realised_returns, label="model", save_path=None):
     """
-    Realised returns as a line, the -VaR forecast as a band, exceptions marked.
+    Realised returns with the VaR band overlaid and exceptions marked.
+    """
+    import matplotlib.pyplot as plt
 
-    Clustering becomes visually obvious here in a way the Christoffersen
-    statistic doesn't convey. Put this one in the README.
-    """
-    raise NotImplementedError
+    exceptions = realised_returns < -var_forecasts
+    breach_dates = realised_returns.index[exceptions]
+    breach_values = realised_returns[exceptions]
+
+    fig, ax = plt.subplots(figsize=(12, 5))
+
+    ax.plot(realised_returns.index, realised_returns,
+            color="#999999", linewidth=0.5, label="daily return")
+    ax.plot(var_forecasts.index, -var_forecasts,
+            color="#1f4e79", linewidth=1.2, label="99% VaR forecast")
+    ax.scatter(breach_dates, breach_values,
+               color="#c0392b", s=14, zorder=3, label=f"exceptions ({exceptions.sum()})")
+
+    ax.axhline(0, color="black", linewidth=0.4)
+    ax.set_title(f"{label} — {exceptions.sum()} exceptions vs {len(realised_returns)*0.01:.1f} expected")
+    ax.set_ylabel("daily return")
+    ax.legend(loc="lower left", fontsize=8)
+    ax.spines[["top", "right"]].set_visible(False)
+    ax.set_ylim(-0.11, 0.09)
+    fig.tight_layout()
+    if save_path:
+        fig.savefig(save_path, dpi=150)
+    return fig
 
 
 def plot_rolling_var_comparison(var_series_dict, save_path=None):

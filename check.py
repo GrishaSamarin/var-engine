@@ -26,3 +26,9 @@ evar = 2.7829 * garch_volatility(port_rets)
 eexc = count_exceptions(evar, port_rets)
 print("evt exceptions:", eexc.sum())
 print(eexc[eexc].index.year.value_counts().sort_index())
+
+from src.plots import plot_exception_timeline
+plot_exception_timeline(flat, port_rets, "Parametric (unconditional)",
+                        "output/exceptions_parametric.png")
+plot_exception_timeline(evar, port_rets, "GARCH-EVT",
+                        "output/exceptions_garch_evt.png")

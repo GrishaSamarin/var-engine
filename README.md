@@ -50,6 +50,9 @@ volatility downward — the wrong direction of error for a risk model.
 ---
 
 ## Findings
+![Parametric exceptions](output/exceptions_parametric.png)
+
+![GARCH-EVT exceptions](output/exceptions_garch_evt.png)
 
 ### 1. The normal distribution fails badly on this portfolio
 
