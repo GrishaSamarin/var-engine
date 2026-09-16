@@ -1,5 +1,5 @@
 # Portfolio and model configuration
-# Everything that a reviewer would want to change lives here, not in the code.
+
 
 portfolio:
   # Ticker -> portfolio weight. Must sum to 1.0.

@@ -1,15 +1,6 @@
 """
-End-to-end pipeline. Fill this in as modules come online.
-
-Suggested order of build:
-  1. data.py works           -> python -m src.data
-  2. parametric_var          -> test_parametric_var_matches_hand_calculation passes
-  3. parametric_var_portfolio + marginal_var
-  4. historical_var + historical_es
-  5. monte_carlo_var
-  6. ewma_volatility -> parametric_var_ewma
-  7. backtest.py, all of it
-  8. plots.py
+End-to-end pipeline: loads data, computes VaR under each model, backtests
+each, and produces the comparison table and charts used in the README.
 """
 
 from src.data import load_all

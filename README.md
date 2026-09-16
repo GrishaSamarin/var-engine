@@ -206,7 +206,7 @@ fitted 2.783 brings the count to 29 against 27.6 expected, a rate of 1.05%.
 | Kupiec POF test | In progress |
 | Christoffersen independence test | Planned |
 | Monte Carlo VaR (Cholesky-correlated) | Planned |
-| Marginal and component VaR | Planned |
+| Marginal and component VaR | Complete |
 
 EWMA is seeded with the sample variance of the first 30 returns. At λ = 0.94
 the seed's weight decays below 0.2% within 100 observations.
