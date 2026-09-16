@@ -3,6 +3,5 @@ __pycache__/
 .venv/
 venv/
 output/cache/
-output/*.png
 .DS_Store
 .ipynb_checkpoints/
